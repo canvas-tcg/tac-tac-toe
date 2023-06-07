@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+#board{
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    border-color: pink;
+    height: 300px;
+    width: 300px;
+    
+   
+
+}
+.pageWrapper{
+    align-items: center;
+} 
+.circle{
+    background-image:
+}
