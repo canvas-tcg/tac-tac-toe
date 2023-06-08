@@ -2,6 +2,14 @@
     box-sizing: border-box;
     border: 1px solid red;
 }
+:root {
+    --even-bg: pink;
+    display: flex;
+   ;
+    --odd-bg: green;
+    display: flex;
+    
+}
 
 #board{
     
@@ -12,12 +20,21 @@
     height: 300px;
     width: 300px;
     
-   
-
 }
+
 .pageWrapper{
     align-items: center;
 } 
-.circle{
-    background-image:
+
+.circle {
+
+    background-image:url(Project_Images/Circle\ \(1\).png)
+    
+    
+
+
+}
+.cross{
+    background-image:url(Project_Images/cross\ \(1\).png)
+    
 }
