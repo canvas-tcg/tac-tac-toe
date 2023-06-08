@@ -1,21 +1,19 @@
-//name variables
-let squares = document.querySelectorAll(".square")
+
+const squares = document.querySelectorAll(".square")
+
+const replayBtn = document.querySelector(".replayBtn")
+const playerTurnSpan = document.querySelector(".playerTurn")
+const countSpan = document.querySelector(".counter")
+
 let numOfPlays = 0 
-let replayBtn = document.querySelector(".replayBtn")
-let playerTurnSpan = document.querySelector(".playerTurn")
-let countSpan = document.querySelector(".counter")
-// let circleImg = document.createElement("img");
-// circleImg.src = "Project_Images/Circle\ \(1\).png";
-// const computedStyleCircle = window.getComputedStyle(document.querySelector('.circle'));
-// let circleBgImg = computedStyleCircle.getPropertyValue("background-image");
+let circleStr = [];
+let crossStr = [];
+let isWinner = false
+let isDraw = false
 
-
-for (let i = 0; i < squares.length; i++){
-    squares[i].setAttribute("data-number", i);
-}
-
-let circleSquaresStr = [];
-let crossSquaresStr = [];
+const circleSound = new Audio("./Project_Audio/circleAudio.mp3")
+const crossSound = new Audio("./Project_Audio/crossAudio.mp3")
+const replayAudio = new Audio("./Project_Audio/replay.mp3")
 
 const winningCombos = [
     [0,1,2],
@@ -28,30 +26,39 @@ const winningCombos = [
     [2,4,6]
 ]
 
-// listen for events
+for (let i = 0; i < squares.length; i++){
+    squares[i].setAttribute("data-number", i);
+}
+
 for (let square of squares){
     square.addEventListener("click", handlePlay)
 }
 replayBtn.addEventListener("click", handleReplay)
-// // add some functions
+
+
 function isEven(){
     return(numOfPlays % 2 === 0)
 }
 
+
 function handlePlay(event){
     if(isEven()){
-        event.target.style.backgroundImage = "url(/Project_Images/circle.png)"
-        //  event.target.style.backgroundColor = "var(--even-bg)";
-         circleSquaresStr.push(event.target.getAttribute("data-number"));
+        circleSound.play();
+        event.target.classList.add("flipAnimate");
+        event.target.style.backgroundImage = "url(./Project_Images/circle.png)"
+        
+         circleStr.push(event.target.getAttribute("data-number"));
          
     } else{
-        event.target.style.backgroundImage = "url(/Project_Images/cross.png)"
-        crossSquaresStr.push(event.target.getAttribute("data-number"));
+        crossSound.play();
+        event.target.classList.add("flipAnimate");
+        event.target.style.backgroundImage = "url(./Project_Images/cross.png)"
+        crossStr.push(event.target.getAttribute("data-number"));
     }
     numOfPlays ++
     hasWon()
     hasDraw()
-    countSpan.innerText = numOfPlays
+    
     
     if (isWinner === false && isDraw === false){
     
@@ -64,13 +71,13 @@ function handlePlay(event){
     event.target.removeEventListener("click", handlePlay);
     
 }
-let isWinner = false
-let isDraw = false
+
+
 function hasWon(){
     for (let winArr of winningCombos){
         let circleCount = 0
         for (num of winArr){
-            let circleSquaresArr = circleSquaresStr.map(Number);
+            let circleSquaresArr = circleStr.map(Number);
             if(circleSquaresArr.includes(num)){
                 circleCount++
             } 
@@ -86,7 +93,7 @@ function hasWon(){
         }
         let crossCount = 0
         for (num of winArr){
-            let crossSquaresArr = crossSquaresStr.map(Number);
+            let crossSquaresArr = crossStr.map(Number);
             if(crossSquaresArr.includes(num)){
                 crossCount++
             } 
@@ -100,7 +107,6 @@ function hasWon(){
                 }
             }
         }
-
     }
 }
 
@@ -111,25 +117,20 @@ function hasDraw(){
         isDraw = true
         playerTurnSpan.innerText = ("It's a tie")
     return
-
     }
 }
 
 
-
 function handleReplay(){
+    replayAudio.play();
     isDraw = false
     isWinner = false
     numOfPlays = 0
-    // playerTurnSpan.innerText = "circle's turn"
-    crossSquaresStr = []
-    crossSquaresStr = []
+    playerTurnSpan.innerText = "circle's turn"
+    circleStr = []
+    crossStr = []
     for (let square of squares){
-    square.removeAttribute("style");
+    square.style.backgroundImage = "";
     square.addEventListener("click", handlePlay)
-
     }
-
-
-
 }
