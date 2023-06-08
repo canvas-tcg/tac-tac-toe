@@ -1,7 +1,11 @@
+
 *{
     box-sizing: border-box;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap");
+
 :root {
     --even-bg: pink;
     display: flex;
@@ -16,25 +20,49 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    border-color: pink;
+    border-color: chartreuse;
+    border-style: solid;
     height: 300px;
     width: 300px;
     
 }
 
 .pageWrapper{
+    display: grid;
+    
     align-items: center;
 } 
 
 .circle {
 
-    background-image:url(Project_Images/Circle\ \(1\).png)
+    background-image:url(Project_Images/circle.png)
     
-    
-
-
 }
 .cross{
-    background-image:url(Project_Images/cross\ \(1\).png)
+    background-image:url(Project_Images/cross.png)
     
+}
+
+.square {
+    background-size: contain;
+    border: 5px;
+    border-color: chartreuse;
+    border-style: solid;
+
+}
+h1, h4 {
+    font-family:'DM Serif Text', serif;
+    color: #F681D5;
+    text-align: center;
+
+}
+button {
+    margin: 5px;
+    /* align-content: center; */
+    font-family:'DM Serif Text', serif;
+    color: #F681D5;
+    text-align: center;
+    justify-content: space-around;
+  
+
 }
