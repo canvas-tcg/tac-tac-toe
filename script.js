@@ -2,6 +2,7 @@
 const squares = document.querySelectorAll(".square")
 
 const replayBtn = document.querySelector(".replayBtn")
+replayBtn.style.visibility = "hidden";
 const playerTurnSpan = document.querySelector(".playerTurn")
 const countSpan = document.querySelector(".counter")
 
@@ -33,6 +34,8 @@ for (let i = 0; i < squares.length; i++){
 for (let square of squares){
     square.addEventListener("click", handlePlay)
 }
+
+
 replayBtn.addEventListener("click", handleReplay)
 
 
@@ -58,7 +61,9 @@ function handlePlay(event){
     numOfPlays ++
     hasWon()
     hasDraw()
-    
+    if (isWinner === true || isDraw === true){
+        replayBtn.style.visibility = "visible";
+        }
     
     if (isWinner === false && isDraw === false){
     
@@ -123,6 +128,7 @@ function hasDraw(){
 
 function handleReplay(){
     replayAudio.play();
+    replayBtn.style.visibility = "hidden";
     isDraw = false
     isWinner = false
     numOfPlays = 0
