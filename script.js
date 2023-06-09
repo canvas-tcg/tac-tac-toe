@@ -1,4 +1,3 @@
-
 const squares = document.querySelectorAll(".square")
 const winMessage = document.querySelector(".winMessage")
 const playerTurnSpan = document.querySelector(".playerTurn")
@@ -6,8 +5,8 @@ const countSpan = document.querySelector(".counter")
 const replayBtn = document.querySelector(".replayBtn")
 replayBtn.style.visibility = "hidden";
 
-const circleSound = new Audio("./Project_Audio/circleAudio.mp3")
-const crossSound = new Audio("./Project_Audio/crossAudio.mp3")
+const circleAudio = new Audio("./Project_Audio/circleAudio.mp3")
+const crossAudio = new Audio("./Project_Audio/crossAudio.mp3")
 const winAudio = new Audio("./Project_Audio/winAudio.mp3")
 const replayAudio = new Audio("./Project_Audio/replay.mp3")
 replayAudio.volume = 0.5;
@@ -45,12 +44,12 @@ function isEven(){
 
 function handlePlay(event){
     if(isEven()){
-        circleSound.play();
+        circleAudio.play();
         event.target.classList.add("flipAnimate");
         event.target.style.backgroundImage = "url(./Project_Images/circle.png)"
         circleStr.push(event.target.getAttribute("data-number"));
     } else{
-        crossSound.play();
+        crossAudio.play();
         event.target.classList.add("flipAnimate");
         event.target.style.backgroundImage = "url(./Project_Images/cross.png)"
         crossStr.push(event.target.getAttribute("data-number"));
