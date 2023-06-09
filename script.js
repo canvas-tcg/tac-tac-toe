@@ -1,20 +1,22 @@
 
 const squares = document.querySelectorAll(".square")
-
-const replayBtn = document.querySelector(".replayBtn")
-replayBtn.style.visibility = "hidden";
+const winMessage = document.querySelector(".winMessage")
 const playerTurnSpan = document.querySelector(".playerTurn")
 const countSpan = document.querySelector(".counter")
+const replayBtn = document.querySelector(".replayBtn")
+replayBtn.style.visibility = "hidden";
+
+const circleSound = new Audio("./Project_Audio/circleAudio.mp3")
+const crossSound = new Audio("./Project_Audio/crossAudio.mp3")
+const winAudio = new Audio("./Project_Audio/winAudio.mp3")
+const replayAudio = new Audio("./Project_Audio/replay.mp3")
+replayAudio.volume = 0.5;
 
 let numOfPlays = 0 
 let circleStr = [];
 let crossStr = [];
 let isWinner = false
 let isDraw = false
-
-const circleSound = new Audio("./Project_Audio/circleAudio.mp3")
-const crossSound = new Audio("./Project_Audio/crossAudio.mp3")
-const replayAudio = new Audio("./Project_Audio/replay.mp3")
 
 const winningCombos = [
     [0,1,2],
@@ -35,23 +37,18 @@ for (let square of squares){
     square.addEventListener("click", handlePlay)
 }
 
-
 replayBtn.addEventListener("click", handleReplay)
-
 
 function isEven(){
     return(numOfPlays % 2 === 0)
 }
-
 
 function handlePlay(event){
     if(isEven()){
         circleSound.play();
         event.target.classList.add("flipAnimate");
         event.target.style.backgroundImage = "url(./Project_Images/circle.png)"
-        
-         circleStr.push(event.target.getAttribute("data-number"));
-         
+        circleStr.push(event.target.getAttribute("data-number"));
     } else{
         crossSound.play();
         event.target.classList.add("flipAnimate");
@@ -64,9 +61,7 @@ function handlePlay(event){
     if (isWinner === true || isDraw === true){
         replayBtn.style.visibility = "visible";
         }
-    
     if (isWinner === false && isDraw === false){
-    
         if(isEven()) {
             playerTurnSpan.innerText = "circle's turn";
         } else{
@@ -74,9 +69,7 @@ function handlePlay(event){
         }
     }
     event.target.removeEventListener("click", handlePlay);
-    
 }
-
 
 function hasWon(){
     for (let winArr of winningCombos){
@@ -88,9 +81,9 @@ function hasWon(){
             } 
             if (circleCount === 3){
                 isWinner = true
-                console.log("circle wins!")
-        
-                playerTurnSpan.innerText = ("circle wins!")
+                playerTurnSpan.innerText = ("")
+                winMessage.innerText = ("CIRCLE WINS!")
+                winAudio.play();
                 for (let square of squares){
                     square.removeEventListener("click", handlePlay);
                     } 
@@ -104,9 +97,9 @@ function hasWon(){
             } 
             if (crossCount === 3){
                 isWinner = true
-                console.log("cross wins!")
-
-                playerTurnSpan.innerText = ("cross wins!")
+                playerTurnSpan.innerText = ("")
+                winMessage.innerText = ("CROSS WINS!")
+                winAudio.play();
                 for (let square of squares){
                 square.removeEventListener("click", handlePlay);
                 }
@@ -115,28 +108,26 @@ function hasWon(){
     }
 }
 
-
 function hasDraw(){
     if (numOfPlays === 9 && isWinner === false){
-        console.log("it's a tie")
         isDraw = true
         playerTurnSpan.innerText = ("It's a tie")
-    return
     }
 }
-
 
 function handleReplay(){
     replayAudio.play();
     replayBtn.style.visibility = "hidden";
+    playerTurnSpan.innerText = "circle's turn"
+    winMessage.innerText = ("")
     isDraw = false
     isWinner = false
     numOfPlays = 0
-    playerTurnSpan.innerText = "circle's turn"
     circleStr = []
     crossStr = []
     for (let square of squares){
-    square.style.backgroundImage = "";
-    square.addEventListener("click", handlePlay)
+        square.style.backgroundImage = "";
+        square.addEventListener("click", handlePlay)
+        square.classList.remove("flipAnimate");
     }
 }
