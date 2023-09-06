@@ -1,6 +1,6 @@
 # TIC-TAC-TOE
 
-A simple two-player game to score three in a row on a 3X3 board.
+A simple two-player game to score three in a row on a 3X3 board. [Play it here](https://mimcollopy.github.io/tac-tac-toe/).
 
 ## Description and game play
 Game play consists of two players taking turns to put their symbol - either a circle, or a cross, on a 3X3 grid,  trying to score three of the same symbols in a row either horizontally, vertically, or diagonally.
@@ -26,7 +26,7 @@ This game was built using HTML, CSS, and JavaScript
 ## Getting started
 
 In this version of my game, circle will always take the first play.
-[You can play it here](https://mimcollopy.github.io/tac-tac-toe/).
+[Play it here](https://mimcollopy.github.io/tac-tac-toe/).
 
 ## Next steps
 
