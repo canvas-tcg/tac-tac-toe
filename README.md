@@ -26,11 +26,11 @@ This game was built using HTML, CSS, and JavaScript
 ## Getting started
 
 In this version of my game, circle will always take the first play.
-[You can play it here](https://canvas-tcg.github.io/tac-tac-toe/).
+[You can play it here](https://mimcollopy.github.io/tac-tac-toe/).
 
 ## Next steps
 
-Features I'd like to add would inlcude allowing the players to choose who goes first, and allowing them to choose the shapes they play with from a pre-defined list.
+Features I'd like to add would inlcude allowing players to choose who plays first, and allowing them to choose the shapes they play with from a pre-defined list.
 
 ### External recources:
 Animation is from Animista

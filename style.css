@@ -8,6 +8,7 @@
 
 body {
     margin: 0 auto;
+    background-color: white;
 }
 
 #board{
@@ -18,6 +19,7 @@ body {
     border-style: solid;
     height: 300px;
     width: 300px;
+    background-color: white;
 }
 
 .pageWrapper{
